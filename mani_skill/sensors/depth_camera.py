@@ -5,7 +5,6 @@ import numpy as np
 import sapien
 import sapien.physx as physx
 from gymnasium import spaces
-from sapien.sensor import StereoDepthSensor, StereoDepthSensorConfig
 
 from mani_skill.utils import sapien_utils
 

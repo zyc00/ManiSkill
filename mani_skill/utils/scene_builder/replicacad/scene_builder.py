@@ -277,8 +277,17 @@ class ReplicaCADSceneBuilder(SceneBuilder):
 
             # For the purposes of physical simulation, we disable collisions between the Fetch robot and the scene background
             self.disable_fetch_move_collisions(self.bg)
+
+        # else:
+        #     raise NotImplementedError(self.env.robot_uids)
+        # NOTE (Yuchen): Hack for custom robots
         else:
-            raise NotImplementedError(self.env.robot_uids)
+            agent = self.env.agent
+            agent.robot.set_pose(sapien.Pose([-1, 0, 0.02]))
+
+            # For the purposes of physical simulation, we disable collisions between the Fetch robot and the scene background
+            self.disable_fetch_move_collisions(self.bg)
+
 
         for obj, pose in self._default_object_poses:
             obj.set_pose(pose)

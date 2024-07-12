@@ -36,7 +36,7 @@ In addition to `agent` and `extra`, `sensor_data` and `sensor_param` are introdu
     
     If the data comes from a camera sensor:
     - `Color`: [H, W, 4], `torch.uint8`. RGB+Alpha values..
-    - `PositionSegmentation`: [H, W, 4], `torch.int16`. The first 3 dimensions stand for (x, y, z) coordinates in the OpenGL/Blender convension. The unit is millimeters. The last dimension represents segmentation ID, see the [Segmentation data section](#segmentation-data) for more details.
+    - `Position`: [H, W, 4], `torch.int16`. The first 3 dimensions stand for (x, y, z) coordinates in the OpenGL/Blender convension. The unit is millimeters. The last dimension represents segmentation ID, see the [Segmentation data section](#segmentation-data) for more details.
 
 - `sensor_param`: parameters of each sensor, which varies depending on type of sensor
   - `{sensor_uid}`:

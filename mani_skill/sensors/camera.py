@@ -43,8 +43,8 @@ class CameraConfig(BaseSensorConfig):
     """entity_uid (str, optional): unique id of the entity to mount the camera. Defaults to None."""
     mount: Union[Actor, Link] = None
     """the Actor or Link to mount the camera on top of. This means the global pose of the mounted camera is now mount.pose * local_pose"""
-    texture_names: Sequence[str] = ("Color", "PositionSegmentation")
-    """texture_names (Sequence[str], optional): texture names to render. Defaults to ("Color", "PositionSegmentation"). Note that the renderign speed will not really change if you remove PositionSegmentation"""
+    texture_names: Sequence[str] = ("Color", "Position")
+    """texture_names (Sequence[str], optional): texture names to render. Defaults to ("Color", "Position"). Note that the renderign speed will not really change if you remove Position"""
 
     def __post_init__(self):
         self.pose = Pose.create(self.pose)

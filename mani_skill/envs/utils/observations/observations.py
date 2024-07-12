@@ -38,7 +38,7 @@ def sensor_data_to_rgbd(
                     if rgb:
                         rgb_data = ori_images[key][..., :3].clone()  # [H, W, 4]
                         new_images["rgb"] = rgb_data  # [H, W, 4]
-                elif key == "PositionSegmentation":
+                elif key == "Position":
                     if depth:
                         depth_data = -ori_images[key][..., [2]]  # [H, W, 1]
                         # NOTE (stao): This is a bit of a hack since normally we have generic to_numpy call to convert
@@ -76,7 +76,7 @@ def sensor_data_to_pointcloud(observation: Dict, sensors: Dict[str, BaseSensor])
             # Each pixel is (x, y, z, actor_id) in OpenGL camera space
             # actor_id = 0 for the background
             images: Dict[str, torch.Tensor]
-            position = images["PositionSegmentation"]
+            position = images["Position"]
             segmentation = position[..., 3].clone()
             position = position.float()
             position[..., 3] = position[..., 3] != 0
@@ -95,7 +95,7 @@ def sensor_data_to_pointcloud(observation: Dict, sensors: Dict[str, BaseSensor])
             if "Color" in images:
                 rgb = images["Color"][..., :3].clone()
                 cam_pcd["rgb"] = rgb.reshape(rgb.shape[0], -1, 3)
-            if "PositionSegmentation" in images:
+            if "Position" in images:
                 cam_pcd["segmentation"] = segmentation.reshape(
                     segmentation.shape[0], -1, 1
                 )

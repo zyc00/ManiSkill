@@ -6,7 +6,7 @@ import sapien
 import sapien.physx as physx
 import sapien.render
 import torch
-from sapien.render import RenderCameraComponent
+from sapien.render import RenderCameraComponent, get_camera_shader_pack
 
 from mani_skill.sensors.base_sensor import BaseSensor
 from mani_skill.sensors.camera import Camera
@@ -176,7 +176,7 @@ class ManiSkillScene:
             ), "intrinsic matrix batch dim not equal to the number of sub-scenes"
         for i, scene in enumerate(self.sub_scenes):
             # Create camera component
-            camera = RenderCameraComponent(width, height)
+            camera = RenderCameraComponent(width, height, get_camera_shader_pack())
             if fovy is not None:
                 if isinstance(fovy, float) or isinstance(fovy, int):
                     camera.set_fovy(fovy, compute_x=True)

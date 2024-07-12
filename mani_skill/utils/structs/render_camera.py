@@ -30,7 +30,7 @@ class RenderCamera:
     name: str
     # NOTE (stao): I cannot seem to use ManiSkillScene as a type here, it complains it is undefined despite using TYPE_CHECKING variable. Without typchecking there is a ciruclar import error
     scene: Any
-    camera_group: sapien.render.RenderCameraGroup = None
+    camera_group = None
     mount: Union[Actor, Link] = None
 
     # we cache model and extrinsic matrices since the code here supports computing these when the camera is mounted and these are always changing

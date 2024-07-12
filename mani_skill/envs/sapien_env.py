@@ -203,10 +203,7 @@ class BaseEnv(gym.Env):
         physx.set_gpu_memory_config(**self.sim_cfg.gpu_memory_cfg.dict())
         self.shader_dir = shader_dir
         if self.shader_dir == "default":
-            sapien.render.set_camera_shader_dir("minimal")
-            sapien.render.set_picture_format("Color", "r8g8b8a8unorm")
-            sapien.render.set_picture_format("ColorRaw", "r8g8b8a8unorm")
-            sapien.render.set_picture_format("PositionSegmentation", "r16g16b16a16sint")
+            sapien.render.set_camera_shader_dir("default")
         elif self.shader_dir == "rt":
             sapien.render.set_camera_shader_dir("rt")
             sapien.render.set_viewer_shader_dir("rt")
@@ -572,6 +569,7 @@ class BaseEnv(gym.Env):
     def _setup_sensors(self, options: dict):
         """Setup sensor configurations and the sensor objects in the scene. Called by `self._reconfigure`"""
 
+        sapien.render.set_camera_shader_dir("rgbd")
         # First create all the configurations
         self._sensor_configs = dict()
 
@@ -616,6 +614,7 @@ class BaseEnv(gym.Env):
                 self.scene,
                 articulation=articulation,
             )
+        sapien.render.set_camera_shader_dir("default")
 
         # Cameras for rendering only
         self._human_render_cameras = dict()
