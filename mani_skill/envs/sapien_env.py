@@ -569,7 +569,7 @@ class BaseEnv(gym.Env):
     def _setup_sensors(self, options: dict):
         """Setup sensor configurations and the sensor objects in the scene. Called by `self._reconfigure`"""
 
-        sapien.render.set_camera_shader_dir("rgbd")
+        sapien.render.set_camera_shader_dir("gs_composite")
         # First create all the configurations
         self._sensor_configs = dict()
 
